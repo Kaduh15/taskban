@@ -2,8 +2,12 @@ import type { Metadata } from 'next'
 import { Libre_Franklin as LibreFranklin, K2D } from 'next/font/google'
 import './globals.css'
 import { cn } from '@/lib/utils'
+import SideMenu from '@/components/SideMenu'
 
-const libreFranklin = LibreFranklin({ subsets: ['latin'], variable: '--font-sans' })
+const libreFranklin = LibreFranklin({
+  subsets: ['latin'],
+  variable: '--font-sans',
+})
 const k2d = K2D({ subsets: ['latin'], variable: '--font-k2', weight: '700' })
 
 export const metadata: Metadata = {
@@ -18,7 +22,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang="pt-BR">
-      <body className={cn('font-sans', libreFranklin.variable, k2d)}>
+      <body
+        className={cn(
+          'min-h-screen min-w-full grid grid-cols-2 grid-rows-2 bg-indigo-200 font-sans antialiased',
+          libreFranklin.variable,
+          k2d.variable,
+        )}
+      >
+        <SideMenu />
         {children}
       </body>
     </html>

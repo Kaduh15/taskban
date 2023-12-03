@@ -15,7 +15,6 @@ export const metadata: Metadata = {
   title: 'Taskban',
   description: 'Taskban um simples kanban para gerenciar suas tarefas',
 }
-
 export default function RootLayout({
   children,
 }: {

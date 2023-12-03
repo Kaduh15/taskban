@@ -1,33 +1,41 @@
 'use client'
 
 import { zodResolver } from '@hookform/resolvers/zod'
+import Link from 'next/link'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
+import { submit } from './actions/submit'
 
 const formCardSchema = z.object({
-  title: z.string(),
-  description: z.string(),
-  date: z.string().datetime(),
+  title: z.string().min(3),
+  description: z.string().min(5),
+  date: z.string().transform((date) => {
+    console.log('🚀 ~ file: index.tsx:18 ~ .transform ~ date:', date)
+
+    return new Date(date).toISOString()
+  }),
+  status: z.enum(['To do', 'Doing', 'QA', 'Done']).default('To do'),
   priority: z.enum(['low', 'medium', 'high']),
 })
 
-type FormCardSchemaType = z.infer<typeof formCardSchema>
+export type FormCardSchemaType = z.infer<typeof formCardSchema>
 
 export default function FormCard() {
   const {
     register,
     handleSubmit,
     watch,
-    formState: { errors },
+    // formState: { errors },
   } = useForm<FormCardSchemaType>({
     resolver: zodResolver(formCardSchema),
   })
 
-  console.log('🚀 ~ file: index.tsx:20 ~ FormCard ~ watch:', watch())
+  const onSubmit = async (data: FormCardSchemaType) => {
+    console.log(data)
+    await submit(data)
 
-  console.log('🚀 ~ file: index.tsx:21 ~ FormCard ~ errors:', errors)
-
-  const onSubmit = (data: FormCardSchemaType) => console.log(data)
+    window.location.href = '/'
+  }
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-8">
@@ -122,6 +130,20 @@ export default function FormCard() {
             />
           </div>
         </div>
+      </div>
+      <div className="flex w-full gap-4 self-end">
+        <Link
+          href="/"
+          className="flex h-9 w-44 items-center justify-center rounded-full border-2 border-red-400 bg-white font-semibold uppercase text-red-400"
+        >
+          Cancelar
+        </Link>
+        <button
+          className="h-9 w-44 rounded-full bg-indigo-700 font-semibold uppercase text-white"
+          type="submit"
+        >
+          Criar
+        </button>
       </div>
     </form>
   )

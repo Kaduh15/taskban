@@ -7,9 +7,11 @@ import {
 
 export default function SideMenu() {
   return (
-    <div className="row-span-2 flex h-full min-w-fit max-w-[40%] flex-col items-center justify-start gap-20 bg-white px-14 py-14">
-      <h2 className="font-k2 text-4xl font-bold text-indigo-700">Taskban</h2>
+    <div className="row-span-2 flex h-full min-w-fit max-w-[40%] flex-col items-center justify-start bg-white px-14 py-14">
       <menu className="grid gap-5 text-lg text-gray-500">
+        <h2 className="mb-20 font-k2 text-4xl font-bold text-indigo-700">
+          Taskban
+        </h2>
         <li className="flex gap-5 text-indigo-700">
           <LayoutDashboard /> Quadro
         </li>

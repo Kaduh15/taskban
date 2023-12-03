@@ -24,7 +24,7 @@ export default function RootLayout({
     <html lang="pt-BR">
       <body
         className={cn(
-          'min-h-screen min-w-full grid grid-cols-[auto_1fr] grid-rows-[auto_1fr] bg-indigo-200 font-sans antialiased text-gray-500',
+          'grid min-h-screen min-w-full grid-cols-[auto_1fr] grid-rows-[auto_1fr] bg-indigo-200 font-sans text-gray-500 antialiased',
           libreFranklin.variable,
           k2d.variable,
         )}

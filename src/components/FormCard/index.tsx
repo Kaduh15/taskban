@@ -34,12 +34,12 @@ export default function FormCard() {
       <div className="relative">
         <label
           htmlFor="title"
-          className="text-xs absolute left-3 -top-1.5 bg-white px-2"
+          className="absolute -top-1.5 left-3 bg-white px-2 text-xs"
         >
           Titulo da Task
         </label>
         <input
-          className="focus:outline-none border-2 border-gray-300 rounded-md p-2 w-full placeholder:text-base"
+          className="w-full rounded-md border-2 border-gray-300 p-2 placeholder:text-base focus:outline-none"
           type="text"
           id="title"
           placeholder="Digite o Titulo da Task"
@@ -49,12 +49,12 @@ export default function FormCard() {
       <div className="relative">
         <label
           htmlFor="description"
-          className="text-xs absolute left-3 -top-1.5 bg-white px-2"
+          className="absolute -top-1.5 left-3 bg-white px-2 text-xs"
         >
           Descrição da Task
         </label>
         <textarea
-          className="focus:outline-none border-2 border-gray-300 rounded-md p-2 w-full placeholder:text-base"
+          className="w-full rounded-md border-2 border-gray-300 p-2 placeholder:text-base focus:outline-none"
           id="description"
           placeholder="Digite a Descrição"
           {...register('description')}
@@ -64,12 +64,12 @@ export default function FormCard() {
         <div className="relative">
           <label
             htmlFor="date"
-            className="text-xs absolute left-3 -top-1.5 bg-white px-2"
+            className="absolute -top-1.5 left-3 bg-white px-2 text-xs"
           >
             Data Final
           </label>
           <input
-            className="focus:outline-none border-2 border-gray-300 rounded-md p-2 w-full"
+            className="w-full rounded-md border-2 border-gray-300 p-2 focus:outline-none"
             type="date"
             id="date"
             {...register('date')}
@@ -77,10 +77,10 @@ export default function FormCard() {
         </div>
         <div className="flex flex-col gap-2">
           <h2 className="text-xs">Priority</h2>
-          <div>
+          <div className="flex gap-4">
             <label
               htmlFor="high"
-              className="border-2 text-orange-600 border-orange-600 rounded-full py-1 px-4 data-[priority=high]:bg-orange-600 data-[priority=high]:text-white"
+              className="rounded-full border-2 border-orange-600 px-4 py-1 text-orange-600 data-[priority=high]:bg-orange-600 data-[priority=high]:text-white"
               data-priority={watch('priority')}
             >
               HIGH
@@ -94,7 +94,7 @@ export default function FormCard() {
             />
             <label
               htmlFor="medium"
-              className="border-2 text-yellow-400 border-yellow-400 rounded-full py-1 px-4 data-[priority=medium]:bg-yellow-400 data-[priority=medium]:text-white"
+              className="rounded-full border-2 border-yellow-400 px-4 py-1 text-yellow-400 data-[priority=medium]:bg-yellow-400 data-[priority=medium]:text-white"
               data-priority={watch('priority')}
             >
               MEDIUM
@@ -108,7 +108,7 @@ export default function FormCard() {
             />
             <label
               htmlFor="low"
-              className="border-2 text-green-600 border-green-600 rounded-full py-1 px-4 data-[priority=low]:bg-green-600 data-[priority=low]:text-white"
+              className="rounded-full border-2 border-green-600 px-4 py-1 text-green-600 data-[priority=low]:bg-green-600 data-[priority=low]:text-white"
               data-priority={watch('priority')}
             >
               LOW

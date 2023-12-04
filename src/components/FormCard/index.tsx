@@ -6,14 +6,10 @@ import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { submit } from './actions/submit'
 
-const formCardSchema = z.object({
+export const formCardSchema = z.object({
   title: z.string().min(3),
   description: z.string().min(5),
-  date: z.string().transform((date) => {
-    console.log('🚀 ~ file: index.tsx:18 ~ .transform ~ date:', date)
-
-    return new Date(date).toISOString()
-  }),
+  date: z.string(),
   status: z.enum(['To do', 'Doing', 'QA', 'Done']).default('To do'),
   priority: z.enum(['low', 'medium', 'high']),
 })
@@ -33,8 +29,6 @@ export default function FormCard() {
   const onSubmit = async (data: FormCardSchemaType) => {
     console.log(data)
     await submit(data)
-
-    window.location.href = '/'
   }
 
   return (

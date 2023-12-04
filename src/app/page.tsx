@@ -1,10 +1,6 @@
 import CardTask from '@/components/CardTask'
 import PopUpNewCard from '@/components/PopupNewCard'
-import { Status, Task, db } from '@/database/inital-db'
-
-type FilterTask = {
-  [key in Status]: Task[]
-}
+import { StatusTask, Task } from '@/types/Task'
 
 export default async function Home({
   searchParams,
@@ -13,46 +9,29 @@ export default async function Home({
 }) {
   const { newcard } = searchParams
 
-  const data = (await db).data
+  const response = await fetch('http://localhost:3000/api/task/sort', {
+    cache: 'no-cache',
+  })
 
-  const {
-    'To do': todo,
-    Doing: doing,
-    QA: qa,
-    Done: done,
-  } = data.reduce<FilterTask>(
-    (acc, task) => {
-      acc[task.status].push(task)
-
-      return acc
-    },
-    { 'To do': [], Doing: [], QA: [], Done: [] },
-  )
+  const data = (await response.json()) as { [key in StatusTask]: Task[] }
 
   return (
     <>
       {Boolean(newcard) && <PopUpNewCard />}
-      <main className="justify-cernter col-start-2 row-start-2 flex w-full items-center justify-center gap-5">
-        <div>
-          {todo.map((task) => (
-            <CardTask key={task.id} {...task} />
-          ))}
-        </div>
-        <div>
-          {doing.map((task) => (
-            <CardTask key={task.id} {...task} />
-          ))}
-        </div>
-        <div>
-          {qa.map((task) => (
-            <CardTask key={task.id} {...task} />
-          ))}
-        </div>
-        <div>
-          {done.map((task) => (
-            <CardTask key={task.id} {...task} />
-          ))}
-        </div>
+      <main className="col-start-2 row-start-2 flex w-full items-start justify-center gap-20 p-20">
+        {Object.entries(data).map(([key, list]) => (
+          <div
+            key={key}
+            className="flex flex-col items-center gap-4 rounded-xl bg-orange-300 p-4"
+          >
+            <h2 className="self-start">
+              {key} {`(${list.length})`}
+            </h2>
+            {list.map((task) => (
+              <CardTask key={task.id} {...task} />
+            ))}
+          </div>
+        ))}
       </main>
     </>
   )

@@ -9,7 +9,7 @@ export default async function Home({
 }) {
   const { newcard } = searchParams
 
-  const response = await fetch('http://localhost:3000/api/task/sort', {
+  const response = await fetch(`${process.env.NEXT_URL}/api/task/sort`, {
     cache: 'no-cache',
   })
 

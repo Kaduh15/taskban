@@ -11,6 +11,8 @@
 # database
 /db.json
 
+.env
+
 # next.js
 /.next/
 /out/

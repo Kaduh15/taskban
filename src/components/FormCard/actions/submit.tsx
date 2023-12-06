@@ -4,9 +4,7 @@ import { redirect } from 'next/navigation'
 import { FormCardSchemaType } from '..'
 
 export const submit = async (data: FormCardSchemaType) => {
-  'use server'
-
-  await fetch('http:localhost:3000/api/task', {
+  await fetch(`${process.env.NEXT_URL}/api/task`, {
     method: 'POST',
     body: JSON.stringify(data),
     headers: {
@@ -14,5 +12,5 @@ export const submit = async (data: FormCardSchemaType) => {
     },
   })
 
-  redirect('/')
+  redirect('/?newcard=0')
 }

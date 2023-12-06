@@ -4,6 +4,7 @@ import './globals.css'
 import { cn } from '@/lib/utils'
 import SideMenu from '@/components/SideMenu'
 import Header from '@/components/Header'
+import ReactQueryProvider from '@/providers/ReactQueryProvider'
 
 const libreFranklin = LibreFranklin({
   subsets: ['latin'],
@@ -30,9 +31,11 @@ export default function RootLayout({
           k2d.variable,
         )}
       >
-        <SideMenu />
-        <Header />
-        {children}
+        <ReactQueryProvider>
+          <SideMenu />
+          <Header />
+          {children}
+        </ReactQueryProvider>
       </body>
     </html>
   )

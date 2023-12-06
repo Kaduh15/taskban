@@ -127,7 +127,7 @@ export default function FormCard() {
       </div>
       <div className="flex w-full gap-4 self-end">
         <Link
-          href="/"
+          href="/?newcard=0"
           className="flex h-9 w-44 items-center justify-center rounded-full border-2 border-red-400 bg-white font-semibold uppercase text-red-400"
         >
           Cancelar
